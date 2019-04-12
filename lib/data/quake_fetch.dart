@@ -4,7 +4,7 @@ import 'dart:convert';
 import '../model/quake.dart';
 import 'package:intl/intl.dart' as intl;
 import '../model/quakes.dart';
-import '../routes/details_quake.dart';
+import '../routes/details_quake.dart' as detail;
 
 //adapted from Diego Velasquez medium example https://github.com/diegoveloper/flutter-samples/blob/master/lib/fetch_data/main_fetch_data.dart
 //helped (hopefully) by Pooja Bhaumik https://medium.com/flutter-community/parsing-complex-json-in-flutter-747c46655f51
@@ -45,8 +45,7 @@ class _QuakeState extends State<QuakeFetchData> {
       quakesMap = json.decode(response.body);
 
       quakesList = quakesMap['features'];
-      quakes = quakesList.map((data) =>
-      new Quake.fromJson(data)).toList();
+      quakes = quakesList.map((data) => new Quake.fromJson(data)).toList();
       //Quakes
       //.fromJson();
       //quakesList.quakesList = quakesList.map((data) => new Quake.fromJson(data))
@@ -64,36 +63,41 @@ class _QuakeState extends State<QuakeFetchData> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Earthquakes!"),
-        ),
-        body: isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(itemBuilder: (BuildContext context, int index) {
+      appBar: AppBar(
+        title: Text("Earthquakes!"),
+      ),
+      body: isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
                 var date = new DateTime.fromMicrosecondsSinceEpoch(
                     quakesList[index]['properties']['time'] * 1000);
                 return ListTile(
-                  leading: CircleAvatar(
-                    child: Text((quakesList[index]['properties']['mag'] as num)
-                        .toStringAsFixed(1)),
-                  ),
-                  contentPadding: EdgeInsets.all(7.0),
-                  title: new Text(quakesList[index]['properties']['title']),
-                  subtitle: Text(
-                    date.toString(),
-                    style: TextStyle(
-                      fontSize: 15.0,
+                    leading: CircleAvatar(
+                      child: Text((quakes[index].mag).toStringAsFixed(1)),
                     ),
-                  ),
-                  trailing: new FlatButton(
+                    contentPadding: EdgeInsets.all(7.0),
+                    title: new Text(quakes[index].title),
+                    subtitle: Text(
+                      date.toString(),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    trailing: new FlatButton(
+                      child: Icon(Icons.keyboard_arrow_right),
                       onPressed: () {
                         Route route = MaterialPageRoute(
-                            builder: (context) => DetailQuake());
+                            builder: (context) =>
+                                detail.DetailQuake(quake: quakes[index]));
+
+                        Navigator.push(context, route);
                       },
-                      child: Icon(Icons.keyboard_arrow_right)),
-                );
-              }));
+                    ));
+              },
+            ),
+    );
   }
 }
