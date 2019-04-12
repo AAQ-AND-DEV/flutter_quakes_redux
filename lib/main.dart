@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Quakes!")
-      ),
+
       body: QuakeFetchData(),
     );
   }
