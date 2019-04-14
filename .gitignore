@@ -37,7 +37,7 @@ build/
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
 **/android/app/src/main/res/xml/secret.xml
-**/android/gradle.properties
+**/android/.gradle/gradle.properties
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
