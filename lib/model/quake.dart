@@ -4,8 +4,9 @@ class Quake {
   final String place;
   final num time;
   final Geometry geo;
+  final String detail;
 
-  Quake._({this.title, this.mag, this.place, this.time, this.geo});
+  Quake._({this.title, this.mag, this.place, this.time, this.geo, this.detail});
 
   factory Quake.fromJson(Map<String,dynamic> json){
     return new Quake._(
@@ -13,7 +14,8 @@ class Quake {
         mag: json['properties']['mag'],
         place: json['properties']['place'],
         time: json['properties']['time'],
-        geo: Geometry.fromJson(json['geometry'])
+        geo: Geometry.fromJson(json['geometry']),
+        detail: json['properties']['detail'],
     );
   }
 }

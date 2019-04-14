@@ -63,6 +63,7 @@ class _QuakeState extends State<QuakeFetchData> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+        backgroundColor: Colors.blueGrey[200],
       appBar: AppBar(
         title: Text("Earthquakes!"),
       ),
@@ -73,7 +74,7 @@ class _QuakeState extends State<QuakeFetchData> {
           : ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 var date = new DateTime.fromMicrosecondsSinceEpoch(
-                    quakesList[index]['properties']['time'] * 1000);
+                    quakes[index].time * 1000);
                 return ListTile(
                     leading: CircleAvatar(
                       child: Text((quakes[index].mag).toStringAsFixed(1)),
