@@ -38,6 +38,7 @@ build/
 **/android/**/GeneratedPluginRegistrant.java
 **/android/app/src/main/res/xml/secret.xml
 **/android/.gradle/gradle.properties
+**/android/keystore.properties
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
