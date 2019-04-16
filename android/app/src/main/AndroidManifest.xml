@@ -17,9 +17,6 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="flutter_quakes_redux"
         android:icon="@mipmap/ic_launcher">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@secret/google_maps_api"/>
 
         <activity
             android:name=".MainActivity"

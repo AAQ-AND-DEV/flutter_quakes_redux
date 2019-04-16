@@ -3,6 +3,7 @@ import 'package:flutter_quakes_redux/model/quake.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../data/google_map.dart';
+import 'package:intl/intl.dart';
 
 class DetailQuake extends StatelessWidget {
   final Quake quake;
@@ -18,9 +19,12 @@ class DetailQuake extends StatelessWidget {
     }
     //also tried .map(), which didn't work
    //coordsCut = quake.geo.coords.forEach((data)=> data.toStringAsFixed(2).toList);
-
+    var dateFormat = new DateFormat("y MMMM d 'at' HH:mm");
+    var date = dateFormat.format(new DateTime.fromMicrosecondsSinceEpoch(
+        quake.time * 1000));
     // TODO: implement build
     return Scaffold(
+
       backgroundColor: Colors.blue[100],
       appBar: AppBar(title: Text('Quake Details')),
       body: Padding(
@@ -62,6 +66,7 @@ class DetailQuake extends StatelessWidget {
                   ],
                 ),
               ),
+
               Text(
                   "occurred at: ${new DateTime.fromMicrosecondsSinceEpoch(quake.time * 1000)}"),
             ])),
