@@ -76,7 +76,7 @@ class _QuakeState extends State<QuakeFetchData> {
                 var dateFormat = new intl.DateFormat("y MMMM d 'at' HH:mm");
                 var date = dateFormat.format(new DateTime.fromMicrosecondsSinceEpoch(
                     quakes[index].time * 1000));
-                var titleString = quakes[index].title[6]=='Q' ? quakes[index].title.substring(6): quakes[index].title.substring(7);
+                var titleString = quakes[index].title[6]=='Q'||quakes[index].title[6] == 'E' ? quakes[index].title.substring(6): quakes[index].title.substring(7);
 
                 return ListTile(
                     leading: CircleAvatar(
@@ -85,7 +85,8 @@ class _QuakeState extends State<QuakeFetchData> {
                     contentPadding: EdgeInsets.all(7.0),
                     title: new Text(titleString),
                     subtitle: Text(
-                      date.toString(),
+                      date
+                      ,
                       style: TextStyle(
                         fontSize: 15.0,
                       ),

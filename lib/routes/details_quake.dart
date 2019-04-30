@@ -68,7 +68,7 @@ class DetailQuake extends StatelessWidget {
               ),
 
               Text(
-                  "occurred at: ${new DateTime.fromMicrosecondsSinceEpoch(quake.time * 1000)}"),
+                  "occurred at: $date",)
             ])),
       ),
     );
