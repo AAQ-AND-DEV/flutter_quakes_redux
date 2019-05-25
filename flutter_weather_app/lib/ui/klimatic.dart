@@ -11,6 +11,7 @@ class _KlimaticState extends State<Klimatic> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
         title: new Text(
           "Klimatic",

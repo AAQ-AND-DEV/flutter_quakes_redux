@@ -69,8 +69,6 @@ class _WeatherFetchState extends State<WeatherFetch> {
     if (weather == null) {
       return new Container();
     } else {
-
-
       return new Stack(
         children: <Widget>[
           Container(
@@ -85,12 +83,15 @@ class _WeatherFetchState extends State<WeatherFetch> {
               ),
             ),
           ),
-          new Container(
-            alignment: Alignment.topRight,
-            margin: const EdgeInsets.fromLTRB(0, 8.0, 20.0, 0),
-            child: new Text(
-              weather.name.toString(),
-              style: styles.cityStyle(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 48.0, 8.0, 8.0),
+            child: new Container(
+              alignment: Alignment.topRight,
+              margin: const EdgeInsets.fromLTRB(0, 8.0, 20.0, 0),
+              child: new Text(
+                weather.name.toString(),
+                style: styles.cityStyle(),
+              ),
             ),
           ),
           new Container(
@@ -114,27 +115,31 @@ class _WeatherFetchState extends State<WeatherFetch> {
                 child: TextFormField(
                   controller: _cityTextController,
                   autovalidate: false,
+                  decoration: InputDecoration(
+                    hintStyle: styles.promptStyle(),
+                      hintText: "Enter City and press 'Get Weather'"),
                   initialValue: null,
-                  style: TextStyle(fontSize: 24.0,color: Colors.red ),
-
+                  style: styles.promptStyle(),
                 ),
               ),
-              new RaisedButton(onPressed: () {
-                city = _cityTextController.text;
-                _fetchWeatherData(city).then((result) {
-                  setState(() {
-                    weather = result;
-                  });
-                });
-              }, child: new Text('Get Weather',
-                  style: TextStyle(fontSize: 32.0, color: Colors.green)
-              ))
+              new RaisedButton(
+                  onPressed: () {
+                    city = _cityTextController.text;
+                    _fetchWeatherData(city).then((result) {
+                      setState(() {
+                        weather = result;
+                      });
+                    });
+                  },
+                  child: new Text('Get Weather',
+                      style: TextStyle(fontSize: 32.0, color: Colors.green)))
             ],
           )
         ],
       );
     }
   }
+
 /* sample of using futureBuilder to access weather
   Widget updateMinMax(String city) {
     return new FutureBuilder(
@@ -173,35 +178,34 @@ class _WeatherFetchState extends State<WeatherFetch> {
   }
   */
   Widget updateMinMax() {
-    if (weather != null){
+    if (weather != null) {
       return Container(
-              alignment: Alignment.bottomCenter,
-              child: new Row(
-                //mainAxisAlignment: MainAxisAlignment.end,
-                //crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  new Expanded(
-                    child: new ListTile(
-                      subtitle: new Text(
-                        "Min/Max Temps",
-                        style: new TextStyle(
-                            fontSize: 34.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      title: new Text(
-                          "${weather.minTemp}\u00b0 F / ${weather.maxTemp}\u00b0 F",
-
-                          style: new TextStyle(fontSize: 48.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                  )
-                ],
+        alignment: Alignment.bottomCenter,
+        child: new Row(
+          //mainAxisAlignment: MainAxisAlignment.end,
+          //crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            new Expanded(
+              child: new ListTile(
+                subtitle: new Text(
+                  "Min/Max Temps",
+                  style: new TextStyle(
+                      fontSize: 34.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                ),
+                title: new Text(
+                    "${weather.minTemp}\u00b0 F / ${weather.maxTemp}\u00b0 F",
+                    style: new TextStyle(
+                        fontSize: 48.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500)),
               ),
-            );
-          } else return Container();
-        }
+            )
+          ],
+        ),
+      );
+    } else
+      return Container();
   }
-
-
+}

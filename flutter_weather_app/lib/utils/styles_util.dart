@@ -11,7 +11,10 @@ TextStyle tempStyle() {
 
 TextStyle cityStyle() {
   return new TextStyle(
-      color: Colors.white,
-      fontSize: 22.9,
-      fontStyle: FontStyle.italic);
+      color: Colors.white, fontSize: 22.9, fontStyle: FontStyle.italic);
+}
+
+TextStyle promptStyle() {
+  return TextStyle(
+      fontSize: 28.0, fontWeight: FontWeight.bold, color: Colors.red[200]);
 }
