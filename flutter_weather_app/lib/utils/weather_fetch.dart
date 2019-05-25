@@ -115,18 +115,20 @@ class _WeatherFetchState extends State<WeatherFetch> {
                   controller: _cityTextController,
                   autovalidate: false,
                   initialValue: null,
-
+                  style: TextStyle(fontSize: 24.0,color: Colors.red ),
 
                 ),
               ),
-              new FlatButton(onPressed: () {
+              new RaisedButton(onPressed: () {
                 city = _cityTextController.text;
                 _fetchWeatherData(city).then((result) {
                   setState(() {
                     weather = result;
                   });
                 });
-              }, child: new Text('Get Weather'))
+              }, child: new Text('Get Weather',
+                  style: TextStyle(fontSize: 32.0, color: Colors.green)
+              ))
             ],
           )
         ],
